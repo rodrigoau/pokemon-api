@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: pokemon-api-monitor
+  labels:
+    # CRÍTICO: Esta etiqueta le dice a nuestra instalación específica de Prometheus 
+    # (que nombramos "monitoreo") que debe leer este archivo.
+    release: monitoreo
+spec:
+  # Selector busca el Service exacto de tu API
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: pokemon-release
+  endpoints:
+    # "http" es el nombre por defecto que Helm le da al puerto en su plantilla
+    - port: http
+      path: /metrics
+      interval: 15s # Prometheus raspará los datos cada 15 segundos

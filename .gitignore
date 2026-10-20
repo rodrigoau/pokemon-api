@@ -1,0 +1,7 @@
+build/
+.venv/
+__pycache__/
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/lambda.zip
